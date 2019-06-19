@@ -1,31 +1,21 @@
 import React from "react";
 import { render } from "react-dom";
 import { ApolloProvider } from "react-apollo";
-import ApolloClient from "apollo-boost";
 // import Currency from './components/currency'
-import DogPhoto from './components/dogs/DogPhoto'
-import Dogs from './components/dogs/Dogs';
-
-const client = new ApolloClient({
-  uri: "https://dog-graphql-api.glitch.me/graphql"
-});
+// import DogPhoto from './components/dogs/DogPhoto'
+// import Dogs from './components/dogs/Dogs';
+import AddTodo from './components/todoList/AddTodo';
+import Todos from './components/todoList/Todos';
+import client from './todoClient';
 
 class App extends React.Component {
-  state = { selectedDog: null };
-
-  onDogSelected = ({ target }) => {
-    this.setState(() => ({ selectedDog: target.value }));
-  };
-
   render() {
     return (
       <ApolloProvider client={client}>
         <div>
           <h2>Building Query components 🚀</h2>
-          {this.state.selectedDog && (
-            <DogPhoto breed={this.state.selectedDog} />
-          )}
-          <Dogs onDogSelected={this.onDogSelected} />
+          <AddTodo />
+          <Todos />
         </div>
       </ApolloProvider>
     );
